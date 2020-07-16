@@ -3,9 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <style>
 body {font-family: "Lato", sans-serif;}
@@ -54,43 +52,49 @@ body {font-family: "Lato", sans-serif;}
   <a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
 </div>
 
-<div class="main">
-  <h2>Sidebar with Icons</h2>
-   <div class="container"><br/>
-  <form method="POST" class="form-horizontal" action="{{ url_for('cadastrar_dados')}}" >
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Nome</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="email" placeholder="Enter email" name="nome">
+   <div class="card">
+     <div class="card-body">
+      <div class="main">
+        <h2 class="text-center">CADASTRO</h2><br/>
+         <div class="container"><br/>
+          <form method="POST" class="form-horizontal" action="{{ url_for('cadastrar_dados')}}" >
+            <div class="form-group row">
+              <label for="" class="col-sm-2 col-form-label">Nome</label>
+              <div class="col-sm-10">
+                <input type="text"  class="form-control" name="nome" id="" value="Nome completo">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">E-mail</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" name="email" id="inputPassword" placeholder="E-mail">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="tel" class="col-sm-2 col-form-label">Telefone</label>
+              <div class="col-md-10">
+                <input type="text" name="telefone" class="form-control" id="tel" placeholder="Telefone">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Senha</label>
+              <div class="col-md-10">
+                <input type="password" name="senha" class="form-control"  placeholder="Senha***">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4 offset-2">
+                <input type="submit" class="btn btn-success" value="Salvar">
+              </div>
+            </div>
+          </form>
+         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Endereço:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="pwd" placeholder="Endereço" name="endereco">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Telefone:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="tel" placeholder="Telefone" name="telefone">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
-          <label><input type="checkbox" name="remember"> Remember me</label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Submit</button>
-      </div>
-    </div>
-  </form>
-</div>
-</div>
+   </div>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
 </body>
 </html>
