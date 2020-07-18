@@ -19,7 +19,7 @@ def render_template_html():
     return render_template('/home/home.html')
 
 @app.route('/home/cadastrar', methods=['POST'])
-def cadastrar_dados():
+def cadastrar_usuarios():
     if request.method == 'POST':
         nome = request.form['nome']
         email = request.form['email']
@@ -33,6 +33,15 @@ def cadastrar_dados():
 
     return 'Cadastrado com sucesso'
 
+@app.route("/usuarios/listar", methods=['GET'])
+def listar_usuarios():
+    select_usuarios = """
+      SELECT * FROM usuario
+    """
+    conexao_cursor.execute(select_usuarios)
+    usuarios = conexao_cursor.fetchall()
+    #print(usuarios)
+    return render_template('usuarios/listar_usuarios.html', usuarios=usuarios)
 
 
 if __name__== '__main__':
