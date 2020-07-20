@@ -1,55 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% extends 'base.html' %}
+{% block title %} Homepage {% endblock %}
 
-    <style>
-        nav {
-          background:  #3f51b5;
-        }
-    </style>
 
-</head>
 
-</style>
-</head>
-<body>
-       <nav>
-          <ul id="slide-out" class="sidenav">
-            <li><div class="user-view">
-              <div class="background">
-                <img src="{{url_for('static', filename='office.jpg')}}">
-              </div>
-              <a href="#user"><img class="circle" src="{{url_for('static', filename='developer.jpg')}}"></a>
-              <a href="#name"><span class="white-text name">Valdir Silva</span></a>
-              <a href="#email"><span class="white-text email">valdirpiresba@gmail.com</span></a>
-            </div></li>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-            <li><a href="#!">Second Link</a></li>
-            <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="/usuarios/listar">Usuários</a></li>
-          </ul>
-          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-       </nav>
-       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+{% block conteudobody %}
+   <div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-  <script src="{{url_for('static', filename='js/materialize.js')}}"></script>
-  <script src="{{url_for('static', filename='js/init.js')}}"></script>
+   </div>
 
-  <script>
-     document.addEventListener('DOMContentLoaded',function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems, options);
-     });
-
-     $(document).ready(function(){
-         $('.sidenav').sidenav();
-     });
-</script>
-</body>
-</html>
+{% endblock %}

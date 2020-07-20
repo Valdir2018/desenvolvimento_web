@@ -33,6 +33,10 @@ def cadastrar_usuarios():
 
     return 'Cadastrado com sucesso'
 
+@app.route('/usuarios/cadastro', methods=['GET'])
+def formulario_cadastro():
+    return render_template('usuarios/cadastrar_usuario.html')
+
 @app.route("/usuarios/listar", methods=['GET'])
 def listar_usuarios():
     select_usuarios = """
@@ -42,7 +46,6 @@ def listar_usuarios():
     usuarios = conexao_cursor.fetchall()
     #print(usuarios)
     return render_template('usuarios/listar_usuarios.html', usuarios=usuarios)
-
 
 if __name__== '__main__':
     app.run(debug=True)

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %} Cadastrar Usuário {% endblock %}
+
+
+
+{% block conteudobody %}
+    <div class="row">
+        <form class="col s12" method="">
+            <div class="row">
+                <div class="input-field col s3">
+                     <i class="material-icons prefix">plus_one</i>
+                    <input type="text" placeholder="Sua Matricula" id="matricula">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">mood</i>
+                    <input type="text" placeholder="Nome completo" id="nome">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">edit_location</i>
+                    <input type="text" placeholder="Cidade" id="cidade">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">worker</i>
+                    <input type="text" placeholder="cargo" id="cargo">
+                </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">mail</i>
+                    <input type="email" placeholder="E-mail" id="email">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">phone</i>
+                    <input type="text" placeholder="telefone" id="telefone">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
