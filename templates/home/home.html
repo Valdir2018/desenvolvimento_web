@@ -1,100 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+        nav {
+          background:  #3f51b5;
+        }
+    </style>
+
 </head>
-<style>
-body {font-family: "Lato", sans-serif;}
 
-.sidebar {
-  height: 100%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 16px;
-}
-
-.sidebar a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
-  display: block;
-}
-
-.sidebar a:hover {
-  color: #f1f1f1;
-}
-
-.main {
-  margin-left: 160px; /* Same as the width of the sidenav */
-  padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
 </style>
 </head>
 <body>
+       <nav>
+          <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+              <div class="background">
+                <img src="{{url_for('static', filename='office.jpg')}}">
+              </div>
+              <a href="#user"><img class="circle" src="{{url_for('static', filename='developer.jpg')}}"></a>
+              <a href="#name"><span class="white-text name">Valdir Silva</span></a>
+              <a href="#email"><span class="white-text email">valdirpiresba@gmail.com</span></a>
+            </div></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="/usuarios/listar">Usuários</a></li>
+          </ul>
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+       </nav>
+       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-<div class="sidebar">
-  <a href="#home"><i class="fa fa-fw fa-home"></i> Home</a>
-  <a href="#"><i class="fa fa-fw fa-wrench"></i> Usuarios</a>
-  <a href="#clients"><i class="fa fa-fw fa-user"></i> Clients</a>
-  <a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script src="{{url_for('static', filename='js/materialize.js')}}"></script>
+  <script src="{{url_for('static', filename='js/init.js')}}"></script>
 
-   <div class="card">
-     <div class="card-body">
-      <div class="main">
-        <h2 class="text-center">CADASTRO</h2><br/>
-         <div class="container"><br/>
-          <form method="POST" class="form-horizontal" action="{{ url_for('cadastrar_usuarios')}}" >
-            <div class="form-group row">
-              <label for="" class="col-sm-2 col-form-label">Nome</label>
-              <div class="col-sm-10">
-                <input type="text"  class="form-control" name="nome" id="" value="Nome completo">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">E-mail</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" name="email" id="inputPassword" placeholder="E-mail">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="tel" class="col-sm-2 col-form-label">Telefone</label>
-              <div class="col-md-10">
-                <input type="text" name="telefone" class="form-control" id="tel" placeholder="Telefone">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Senha</label>
-              <div class="col-md-10">
-                <input type="password" name="senha" class="form-control"  placeholder="Senha***">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-4 offset-2">
-                <input type="submit" class="btn btn-success" value="Salvar">
-              </div>
-            </div>
-          </form>
-         </div>
-      </div>
-    </div>
-   </div>
+  <script>
+     document.addEventListener('DOMContentLoaded',function() {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, options);
+     });
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+     $(document).ready(function(){
+         $('.sidenav').sidenav();
+     });
+</script>
 </body>
 </html>
