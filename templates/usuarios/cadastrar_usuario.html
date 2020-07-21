@@ -4,34 +4,54 @@
 
 
 {% block conteudobody %}
+    <br/><br/><br/><br/>
+
+    <h4>CADASTRO DE USUÁRIO</h4>
+
+     <br/><br/><br/>
     <div class="row">
-        <form class="col s12" method="">
+        <form class="col s12" action="{{ url_for('cadastrar_usuario') }}" method="post">
             <div class="row">
                 <div class="input-field col s3">
                      <i class="material-icons prefix">plus_one</i>
-                    <input type="text" placeholder="Sua Matricula" id="matricula">
+                    <input type="text" placeholder="Sua Matricula" name="matricula" id="matricula">
                 </div>
                 <div class="input-field col s3">
                     <i class="material-icons prefix">mood</i>
-                    <input type="text" placeholder="Nome completo" id="nome">
+                    <input type="text" placeholder="Nome completo"  name="nome" id="nome">
                 </div>
                 <div class="input-field col s3">
                     <i class="material-icons prefix">edit_location</i>
-                    <input type="text" placeholder="Cidade" id="cidade">
+                    <input type="text" placeholder="Cidade" name="cidade" id="cidade">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s3">
                     <i class="material-icons prefix">worker</i>
-                    <input type="text" placeholder="cargo" id="cargo">
+                    <input type="text" placeholder="cargo"  name="cargo" id="cargo">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s3">
                     <i class="material-icons prefix">mail</i>
-                    <input type="email" placeholder="E-mail" id="email">
+                    <input type="email" placeholder="E-mail" name="email" id="email">
                 </div>
                 <div class="input-field col s3">
                     <i class="material-icons prefix">phone</i>
-                    <input type="text" placeholder="telefone" id="telefone">
+                    <input type="text" placeholder="telefone" name="telefone" id="telefone">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">password</i>
+                    <input type="text" placeholder="Senha" name="senha" id="senha">
+                </div>
+                <div class="input-field col s3">
+                    {% for dado in dados %}
+                      <a  onclick="M.toast({html: `{{ dados.mensagem }}`})">
+                      <button type="submit" class="btn waves-effect waves-light"  >Cadastrar
+                        <i class="material-icons right">send</i>
+                      </button>
+                      </a>
+
+                    {% endfor %}
+
                 </div>
             </div>
         </form>

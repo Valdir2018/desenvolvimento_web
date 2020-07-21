@@ -17,7 +17,7 @@ def init():
 @app.route('/home/', methods=['GET'])
 def render_template_html():
     return render_template('/home/home.html')
-
+"""
 @app.route('/home/cadastrar', methods=['POST'])
 def cadastrar_usuarios():
     if request.method == 'POST':
@@ -32,10 +32,36 @@ def cadastrar_usuarios():
         conexao.commit()
 
     return 'Cadastrado com sucesso'
+"""
 
-@app.route('/usuarios/cadastro', methods=['GET'])
+@app.route('/usuarios/', methods=['GET'])
 def formulario_cadastro():
     return render_template('usuarios/cadastrar_usuario.html')
+
+@app.route('/usuarios/criar_usuario', methods=['POST'])
+def cadastrar_usuario():
+
+    if request.method == 'POST':
+        matricula  = request.form['matricula']
+        nome       = request.form['nome']
+        cidade     = request.form['cidade']
+        cargo      = request.form['cargo']
+        email      = request.form['email']
+        telefone   = request.form['telefone']
+        senha      = request.form['senha']
+
+        sql = """
+            INSERT INTO func_user(matricula, nome, cidade, cargo, email, telefone, senha)
+            VALUES ('{}','{}','{}','{}','{}','{}','{}')
+            """.format(matricula, nome, cidade, cargo, email, telefone, senha)
+        row = conexao_cursor.execute(sql)
+        conexao.commit()
+        if row > 0:
+            dados = {'mensagem': 'Cadastro efetuado com sucesso.'}
+        else:
+            dados = {'mensagem': 'Não foi possível efetuar o cadastro.'}
+
+    return render_template('usuarios/cadastrar_usuario.html', dados=dados)
 
 @app.route("/usuarios/listar", methods=['GET'])
 def listar_usuarios():

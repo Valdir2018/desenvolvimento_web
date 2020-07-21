@@ -15,28 +15,48 @@
         nav {
           background:  #3f51b5;
         }
+        .sidenav-trigger i {
+          color: #fff;
+          margin-top: -55px;
+          display: block;
+          font-size: 51px;
+
+        }
+        .w-logout{
+          float: right;
+          position: relative;
+          margin: -50px 30px;
+          color: white;
+          font-size: 30px;
+          cursor: pointer;
+        }
     </style>
 </head>
 <body>
        <nav>
           <ul id="slide-out" class="sidenav">
-            <li><div class="user-view">
+            <li>
+                <div class="user-view">
               <div class="background">
                 <img src="{{url_for('static', filename='office.jpg')}}">
-              </div>
-              <a href="#user"><img class="circle" src="{{url_for('static', filename='developer.jpg')}}"></a>
-              <a href="#name"><span class="white-text name">Valdir Silva</span></a>
-              <a href="#email"><span class="white-text email">valdirpiresba@gmail.com</span></a>
-            </div></li>
 
+              </div>
+                <a href="#user"><img class="circle" src="{{url_for('static', filename='developer.jpg')}}"></a>
+                <a href="#name"><span class="white-text name">Valdir Silva</span></a>
+                <a href="#email"><span class="white-text email">valdirpiresba@gmail.com</span></a>
+            </div>
+            </li>
             <li><div class="divider"></div></li>
             <li><a class="waves-effect" href="/usuarios/profile">Meu Perfil</a></li>
-              <li><a class="waves-effect" href="/usuarios/cadastro">Cadastrar Usuário</a></li>
+              <li><a class="waves-effect" href="/usuarios/">Cadastrar Usuário</a></li>
             <li><a class="waves-effect" href="/usuarios/listar">Usuários</a></li>
           </ul>
-          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
        </nav>
        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+       <div class="w-logout">
+           <i class="material-icons">power_settings_new</i>
+       </div>
+
 
        {# Aqui posso criar o Bloco de conteúdo #}
        {%  block conteudobody %}
