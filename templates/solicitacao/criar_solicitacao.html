@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %}
+{% block title %} Homepage {% endblock %}
+
+
+
+{% block conteudobody %}
+   <div>
+       <h3>Criar  Solicitação</h3>
+       <div class="row">
+        <form class="col s12" action="{{ url_for('criar_solicitacao') }}" method="post">
+            <div class="row">
+                <div class="input-field col s3">
+                     <i class="material-icons prefix">plus_one</i>
+                    <input type="text" placeholder="matricula" name="matricula" id="matricula">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">mood</i>
+                    <input type="text" placeholder="Nome completo"  name="nome" id="nome">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">edit_location</i>
+                    <input type="text" placeholder="Cidade" name="cidade" id="cidade">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">worker</i>
+                    <input type="text" placeholder="cargo"  name="cargo" id="cargo">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">mail</i>
+                    <input type="email" placeholder="E-mail" name="email" id="email">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">phone</i>
+                    <input type="text" placeholder="telefone" name="telefone" id="telefone">
+                </div>
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">password</i>
+                    <input type="text" placeholder="Senha" name="senha" id="senha">
+                </div>
+                <div class="input-field col s3">
+                    <button type="submit" class="btn waves-effect waves-light"  >Cadastrar
+                        <i class="material-icons right">send</i>
+                      </button>
+
+                </div>
+            </div>
+        </form>
+    
+       
+   </div>
+
+{% endblock %}

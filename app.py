@@ -2,10 +2,8 @@ import datetime,pymysql
 from flask import Flask, redirect, json
 from flask.templating import render_template
 from flask.globals import request
-
 # from Werkzeug.security import generate_password_hash, check_password_hash
 from contextlib import closing
-
 from flaskext.mysql import MySQL
 from flask.helpers import url_for
 
@@ -26,8 +24,6 @@ with app.app_context():
     conexao_cursor = mysql.connect().cursor()  
         
 
-
-
 # conexao = pymysql.connect(host='localhost', user='root', password='', db='dbsistema_python')
 # conexao_cursor = conexao.cursor()
 
@@ -41,14 +37,12 @@ def autenticate():
     if request.method == 'POST':
             username  = request.form['login']
             password  = request.form['senha']
-            conexao_cursor.execute("SELECT * FROM func_user WHERE matricula='" + username + " 'and senha='" + password + " ' ")
-            
+            conexao_cursor.execute("SELECT * FROM func_user WHERE matricula='" + username + " 'and senha='" + password + " ' ")            
             data = conexao_cursor.fetchone()
-            print(data.nome)
 
             if data is None:
                 msg = {'error':'Usuario ou senha invalida'}
-                print(msg)
+    
                 return msg
             else:
                 return render_template('/home/dashboard.html')
@@ -64,7 +58,22 @@ def render_template_html():
 @app.route('/usuarios/', methods=['GET'])
 def formulario_cadastro():
      return render_template('usuarios/cadastrar_usuario.html')
-       
+
+
+
+@app.route('/solicitacao/')
+def formulario_solicitacao():
+    return render_template('/solicitacao/criar_solicitacao.html')     
+
+
+@app.route('/solicitacao/criar_solicitacao', methods=['POST','GET'])      
+def criar_solicitacao():
+    if request.method == 'POST':
+        matricula = request.form['matricula']
+        print(matricula)
+    return 'pagina vazia'
+
+
 
 @app.route('/usuarios/criar_usuario', methods=['POST'])
 def cadastrar_usuario():
