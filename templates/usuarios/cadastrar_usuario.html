@@ -43,6 +43,9 @@
                     <input type="text" placeholder="Senha" name="senha" id="senha">
                 </div>
                 <div class="input-field col s3">
+                    <button type="submit" class="btn waves-effect waves-light"  >Cadastrar
+                        <i class="material-icons right">send</i>
+                      </button>
                     {% for dado in dados %}
                       <a  onclick="M.toast({html: `{{ dados.mensagem }}`})">
                       <button type="submit" class="btn waves-effect waves-light"  >Cadastrar
@@ -51,6 +54,7 @@
                       </a>
 
                     {% endfor %}
+
 
                 </div>
             </div>

@@ -1,46 +1,73 @@
 import datetime,pymysql
-from flask import Flask, redirect
+from flask import Flask, redirect, json
 from flask.templating import render_template
 from flask.globals import request
 
+# from Werkzeug.security import generate_password_hash, check_password_hash
+from contextlib import closing
+
+from flaskext.mysql import MySQL
 from flask.helpers import url_for
+
+
+
+mysql = MySQL()
 app = Flask(__name__)
 
-conexao = pymysql.connect(host='localhost', user='root', password='', db='dbsistema_python')
-conexao_cursor = conexao.cursor()
 
+# Config 
+app.config['MYSQL_DATABASE_USER'] = 'root';
+app.config['MYSQL_DATABASE_PASSWORD'] = '';
+app.config['MYSQL_DATABASE_DB'] = 'dbsistema_python';
+app.config['MYSQL_DATABASE_HOST'] = 'localhost';
+mysql.init_app(app)
+
+with app.app_context():
+    conexao_cursor = mysql.connect().cursor()  
+        
+
+
+
+# conexao = pymysql.connect(host='localhost', user='root', password='', db='dbsistema_python')
+# conexao_cursor = conexao.cursor()
 
 @app.route('/')
-def init():
-    return 'Página de login'
+def main():
+    return render_template('home/index.html')
 
+
+@app.route('/', methods=['POST'])
+def autenticate():
+    if request.method == 'POST':
+            username  = request.form['login']
+            password  = request.form['senha']
+            conexao_cursor.execute("SELECT * FROM func_user WHERE matricula='" + username + " 'and senha='" + password + " ' ")
+            
+            data = conexao_cursor.fetchone()
+            print(data.nome)
+
+            if data is None:
+                msg = {'error':'Usuario ou senha invalida'}
+                print(msg)
+                return msg
+            else:
+                return render_template('/home/dashboard.html')
+
+
+        
 @app.route('/home/', methods=['GET'])
 def render_template_html():
-    return render_template('/home/home.html')
-"""
-@app.route('/home/cadastrar', methods=['POST'])
-def cadastrar_usuarios():
-    if request.method == 'POST':
-        nome = request.form['nome']
-        email = request.form['email']
-        telefone = request.form['telefone']
-        senha     = request.form['senha']
-        data_criacao = datetime.datetime.now()
+    return render_template('/home/index.html')
 
-        sql_insert = "INSERT INTO usuario(nome, email, telefone, senha,data_criacao) VALUES ('{}','{}','{}','{}','{}')".format(nome, email, telefone, senha, data_criacao)
-        conexao_cursor.execute(sql_insert)
-        conexao.commit()
 
-    return 'Cadastrado com sucesso'
-"""
 
 @app.route('/usuarios/', methods=['GET'])
 def formulario_cadastro():
-    return render_template('usuarios/cadastrar_usuario.html')
+     return render_template('usuarios/cadastrar_usuario.html')
+       
 
 @app.route('/usuarios/criar_usuario', methods=['POST'])
 def cadastrar_usuario():
-
     if request.method == 'POST':
         matricula  = request.form['matricula']
         nome       = request.form['nome']
@@ -52,10 +79,11 @@ def cadastrar_usuario():
 
         sql = """
             INSERT INTO func_user(matricula, nome, cidade, cargo, email, telefone, senha)
-            VALUES ('{}','{}','{}','{}','{}','{}','{}')
+            VALUES ('{}','{}','{}','{}','{}','{}','{}') 
             """.format(matricula, nome, cidade, cargo, email, telefone, senha)
-        row = conexao_cursor.execute(sql)
-        conexao.commit()
+        #conn = conexao_cursor.connect().cursor()    
+        row = conn.execute(sql)
+        conexao_cursor.commit()
         if row > 0:
             dados = {'mensagem': 'Cadastro efetuado com sucesso.'}
         else:
@@ -63,15 +91,21 @@ def cadastrar_usuario():
 
     return render_template('usuarios/cadastrar_usuario.html', dados=dados)
 
+
+        
 @app.route("/usuarios/listar", methods=['GET'])
 def listar_usuarios():
-    select_usuarios = """
-      SELECT * FROM usuario
-    """
-    conexao_cursor.execute(select_usuarios)
-    usuarios = conexao_cursor.fetchall()
-    #print(usuarios)
-    return render_template('usuarios/listar_usuarios.html', usuarios=usuarios)
+     
+     conexao_cursor.execute("SELECT * FROM func_user")
+     usuarios = conexao_cursor.fetchall()
+     return render_template('usuarios/listar_usuarios.html', usuarios=usuarios)
+    
+        
 
-if __name__== '__main__':
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True, port=8000)
+
+
+
+    
+    
