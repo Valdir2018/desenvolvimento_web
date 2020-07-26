@@ -10,21 +10,27 @@
        <table class="table responsive-table centered">
            <thead>
                <tr>
-                  <th data-field="id">Id</th>
-                  <th data-field="nome">Nome</th>
-                  <th data-field="mensagem">E-mail</th>
-                  <th data-field="data">Telefone</th>
+                  <!-- <th data-field="id">Id</th> -->
+                  <th data-field="nome">Matricula</th>
+                  <th data-field="mensagem">Nome</th>
+                  <th data-field="data">Cidade</th>
+                  <th data-field="link">Cargo</th>
+                  <th data-field="link">E-mail</th>
+                  <th data-field="link">Telefone</th>
                   <th data-field="link">Senha</th>
                </tr>
            </thead>
            <tbody>
                {% for usuario in usuarios %}
                <tr>
-                <td>{{ usuario[0] }}</td>
+                <!-- <td>{{ usuario[0] }}</td> -->
                 <td>{{ usuario[1] }}</td>
                 <td>{{ usuario[2] }}</td>
                 <td>{{ usuario[3] }}</td>
                 <td>{{ usuario[4] }}</td>
+                <td>{{ usuario[5] }}</td>
+                <td>{{ usuario[6] }}</td>
+                <td>{{ usuario[7] }}</td>
 
                </tr>
                 {% endfor %}
